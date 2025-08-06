@@ -1,0 +1,45 @@
+@mixin customPopup {
+	.popup-content {
+		height: 600rpx;
+		padding: 40rpx;
+		background-color: #fff;
+		display: flex;
+		flex-direction: column;
+		.popup-title {
+			height: 70rpx;
+			color: #3f3f3f;
+			font-size: 34rpx;
+			text-align: center;
+		}
+		.picker-view {
+			flex: 1;
+			.column-item {
+				line-height: 100rpx;
+				text-align: center;
+			}
+		}
+		.popup-footer {
+			height: 100rpx;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			.picker-cancel,
+			.picker-confirm {
+				font-size: 32rpx;
+				width: 300rpx;
+				height: 80rpx;
+				line-height: 80rpx;
+				text-align: center;
+				border-radius: 40rpx;
+			}
+			.picker-cancel {
+				color: #00C4A4;
+				border:2rpx solid #00C4A4;
+			}
+			.picker-confirm {
+				color: #fff;
+				background-color: #00C4A4;
+			}
+		}
+	}
+}
