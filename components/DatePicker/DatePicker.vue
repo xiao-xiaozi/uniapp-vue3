@@ -27,6 +27,10 @@
 		placeholder:{
 			type:String,
 			default:'请选择日期'
+		},
+		defaultDate:{ // 日期选择器打开时默认选中的日期
+			type:String,
+			default:''
 		}
 	})
 	const emits = defineEmits(['popupChange','confirm','cancel'])
@@ -60,10 +64,10 @@
 		yearOptions.value = useDatePickerYear(props.dateStart, props.dateEnd, valueFormat.value)
 	}
 	function refreshMonthOptions(year){
-		monthOptions.value = useDatePickerMonth(props.dateStart, props.dateEnd, valueFormat.value, year || model.value)
+		monthOptions.value = useDatePickerMonth(props.dateStart, props.dateEnd, valueFormat.value, year || model.value || props.defaultDate)
 	}
 	function refreshDayOptions(yearMonth){
-		dayOptions.value = useDatePickerDay(props.dateStart, props.dateEnd, valueFormat.value, yearMonth || model.value)
+		dayOptions.value = useDatePickerDay(props.dateStart, props.dateEnd, valueFormat.value, yearMonth || model.value || props.defaultDate)
 	}
 	onMounted(() => {
 		refreshYearOptions()
@@ -88,8 +92,16 @@
 			const dayIndex = dayOptions.value.findIndex(el => el == day);
 			pickerViewValue.value = [yearIndex, monthIndex, dayIndex]
 		}else {
-			// 空值默认选中第一项
-			pickerViewValue.value = [0,0,0]
+			if(props.defaultDate) {
+				pickerViewValue.value = [
+					yearOptions.value.findIndex(el => el == moment(props.defaultDate).format('YYYY')),
+					monthOptions.value.findIndex(el => el == moment(props.defaultDate).format('M')),
+					dayOptions.value.findIndex(el => el == moment(props.defaultDate).format('D'))
+				]
+			}else {
+				// 空值默认选中第一项
+				pickerViewValue.value = [0,0,0]
+			}
 		}
 		
 	}

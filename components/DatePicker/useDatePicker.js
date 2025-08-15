@@ -71,7 +71,6 @@ export function useDatePickerMonth(dateStart, dateEnd, dateFormat, chooseYear){
  * @param {Object} dateFormat
  */
 function isSameYearMonth(date, dateFormat,yearMonth){
-	// console.log(moment(yearMonth, 'YYYY-MM').format('YYYY-MM') , moment(date, dateFormat).format('YYYY-MM'))
 	return moment(yearMonth, 'YYYY-MM').format('YYYY-MM') == moment(date, dateFormat).format('YYYY-MM')
 }
 
