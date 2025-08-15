@@ -64,16 +64,16 @@
 		yearOptions.value = useDatePickerYear(props.dateStart, props.dateEnd, valueFormat.value)
 	}
 	function refreshMonthOptions(year){
-		monthOptions.value = useDatePickerMonth(props.dateStart, props.dateEnd, valueFormat.value, year || model.value || props.defaultDate)
+		monthOptions.value = useDatePickerMonth(props.dateStart, props.dateEnd, valueFormat.value, year || model.value)
 	}
 	function refreshDayOptions(yearMonth){
-		dayOptions.value = useDatePickerDay(props.dateStart, props.dateEnd, valueFormat.value, yearMonth || model.value || props.defaultDate)
+		dayOptions.value = useDatePickerDay(props.dateStart, props.dateEnd, valueFormat.value, yearMonth || model.value)
 	}
 	onMounted(() => {
 		refreshYearOptions()
 		const [yearIndex, monthIndex] = pickerViewValue.value
-		if(loadMonth.value) refreshMonthOptions(yearOptions.value[yearIndex])
-		if(loadDay.value) refreshDayOptions(`${yearOptions.value[yearIndex]}-${monthOptions.value[monthIndex]}`)
+		if(loadMonth.value) refreshMonthOptions(props.defaultDate || yearOptions.value[yearIndex])
+		if(loadDay.value) refreshDayOptions(props.defaultDate || `${yearOptions.value[yearIndex]}-${monthOptions.value[monthIndex]}`)
 	})
 	
 	
